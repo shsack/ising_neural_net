@@ -1,4 +1,3 @@
-from __future__ import division
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.random import rand
@@ -49,7 +48,7 @@ for t in range(len(T)):
     tmp = []
     lattice = randomstate(N)
 
-    # Equilibriate spin lattice
+    # Equilibrate spin lattice
     for eq in range(EQsteps):
         metropolis_step(lattice, T[t])
 
