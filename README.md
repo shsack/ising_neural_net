@@ -1,2 +1,3 @@
-# IsingNeuralNetwork
-Phase classification of the Ising model with an Artificial Neural Network
+# Neural Network Phase Classification
+An Artificial Neural Network is used to classify the two phases of the 2D Ising model.
+
