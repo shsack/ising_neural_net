@@ -4,10 +4,10 @@ import pickle
 from sklearn.model_selection import train_test_split
 
 def load(filename):
-    with open(filename+'.pickle', 'rb') as f:
+    with open(filename + '.pickle', 'rb') as f:
         return pickle.load(f)
 
-data, labels = load('train_spins_two'), load('train_labels_two')
+data, labels = load('train_spins'), load('train_labels')
 x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, random_state=42)
 
 print(labels)
@@ -21,7 +21,7 @@ print_every = 10
 
 with tf.name_scope("inputs"):
     x = tf.placeholder(tf.float32, [None, num_inputs], name="x-input")
-    y = tf.placeholder(tf.float32, [None, num_classes], name="y-input")gi
+    y = tf.placeholder(tf.float32, [None, num_classes], name="y-input")
 
 with tf.name_scope("model"):
     W = tf.Variable(tf.zeros([num_inputs, num_classes]), name="W")
