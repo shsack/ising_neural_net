@@ -7,4 +7,3 @@ Once the network is trained, its parameters can be saved with **pickle**.
 
 ## Ising Model
 The spin configuration of the Ising model is sampled with a Markov chain.
- Test
