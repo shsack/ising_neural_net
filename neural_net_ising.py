@@ -2,7 +2,8 @@ import tensorflow as tf
 import pickle
 import random
 import numpy as np
-import pylab
+#import pylab
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from scipy.optimize import curve_fit
 # Initialize seed for randomized training
@@ -14,7 +15,7 @@ def load(filename):
         return pickle.load(f)
 
 # Loading data
-data_x, data_y = load('train_spins_two'), load('train_labels_two')
+data_x, data_y = load('train_spins'), load('train_labels')
 T = load('temperature')
 
 # Split data into training and test set
@@ -28,7 +29,7 @@ display_step = 40
 
 # Network Parameters
 n_hidden_1 = 100 # 1st layer number of features
-n_input = 400 # 20*20 lattice
+n_input = 16 * 16 # 2D Ising lattice
 n_classes = 2 # high and low phase
 
  # tf Graph input
@@ -56,7 +57,7 @@ def multilayer_sigmoid(x, weights, biases):
 pred = multilayer_sigmoid(x, weights, biases)
 
 # Define cost and optimizer
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred, labels=y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=y))
 regularizer = tf.nn.l2_loss(weights['h1']) + tf.nn.l2_loss(weights['out'])
 cost = tf.reduce_mean(cost + l2 * regularizer)
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate).minimize(cost)
@@ -75,7 +76,7 @@ for epoch in range(training_epochs):
     train_y = train_y[perm]
     train_T = train_T[perm]
 
-    # Traing step
+    # Training step
     _, c = sess.run([optimizer, cost], feed_dict={x: train_x, y: train_y})
 
     # Test model
@@ -89,6 +90,7 @@ for epoch in range(training_epochs):
         print("Epoch:", '%04d' % (epoch+1), "Cost=", "{:.3f}".format(c),
               "Train Accuracy:", "{:.3f}".format(accuracy.eval(feed_dict={x: train_x, y: train_y})),
               "Test Accuracy:", "{:.3f}".format(accuracy.eval(feed_dict={x: test_x, y: test_y})))
+
 # Define NN output
 output = tf.nn.softmax(multilayer_sigmoid(tf.cast(test_x, tf.float32), weights, biases))
 
@@ -105,12 +107,12 @@ y0 = sigmoid(x, *popt0)
 y1 = sigmoid(x, *popt1)
 
 # Plotting output of NN
-pylab.plot(test_T, abs(output[:, 0].eval()), '+', color="green")
-pylab.plot(test_T, abs(output[:, 1]).eval(), 'v', color="red")
-pylab.plot(x, y0, color='green')
-pylab.plot(x, y1, color='red')
-pylab.ylim(-0.05, 1.05)
-pylab.xlabel("Temperature (T)", fontsize=20)
-pylab.ylabel("Output ", fontsize=20)
-pylab.grid()
-pylab.show()
+plt.plot(test_T, abs(output[:, 0].eval()), '+', color="green")
+plt.plot(test_T, abs(output[:, 1]).eval(), 'v', color="red")
+plt.plot(x, y0, color='green')
+plt.plot(x, y1, color='red')
+plt.ylim(-0.05, 1.05)
+plt.xlabel("Temperature (T)", fontsize=20)
+plt.ylabel("Output ", fontsize=20)
+plt.grid()
+plt.show()
