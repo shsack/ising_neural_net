@@ -21,7 +21,7 @@ print_every = 10
 
 with tf.name_scope("inputs"):
     x = tf.placeholder(tf.float32, [None, num_inputs], name="x-input")
-    y = tf.placeholder(tf.float32, [None, num_classes], name="y-input")
+    y = tf.placeholder(tf.float32, [None, num_classes], name="y-input")gi
 
 with tf.name_scope("model"):
     W = tf.Variable(tf.zeros([num_inputs, num_classes]), name="W")
