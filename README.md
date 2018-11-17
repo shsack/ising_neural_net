@@ -10,5 +10,5 @@ Boltzmann distribution with a Markov chain.
 
 ## Authors
 
-* **Stefan H Sack** - *Initial work* - [](https://github.com/PurpleBooth)
+* **Stefan H Sack** 
 
