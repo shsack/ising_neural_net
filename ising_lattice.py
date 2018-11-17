@@ -42,28 +42,29 @@ spins, labels = np.zeros((0, N * N)), np.zeros((0, 2))
 high, low = np.array([1, 0]), np.array([0, 1])
 
 # Perform simulation
-for t in range(len(T)):
+for index, temp in enumerate(T):
     tmp = []
     lattice = randomstate(N)
 
     # Equilibrate spin lattice
     for eq in range(EQsteps):
-        metropolis_step(lattice, T[t])
+        metropolis_step(lattice, temp)
 
     # Loop over spin configurations to collect data
     for mc in range(MCsteps):
         if mc % 200 == 0:
-            metropolis_step(lattice, T[t])
+            metropolis_step(lattice, temp)
             tmp.append(np.sum(lattice))
     spins = np.vstack((spins, lattice.ravel()))
 
     # Append correct label corresponding to current spin configuration
-    if T[t] < Tc:
+    if temp < Tc:
         labels = np.vstack((labels, low))
     else:
         labels = np.vstack((labels, high))
-    Magnetization[t] = np.mean(tmp) / (N * N)
-    print(t, "out of", len(T))
+
+    Magnetization[index] = np.mean(tmp) / (N * N)
+    print(index, "out of", len(T))
 
 # Save data
 save(0.5 * (spins + 1), 'train_spins'), save(labels, 'train_labels'), save(T, 'temperature')
