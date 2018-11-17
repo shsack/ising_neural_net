@@ -371,7 +371,8 @@ target/
 .ipynb_checkpoints
 
 # Pycharn
-.idea
+.idea/
+*.iml
 
 # IPython
 profile_default/
