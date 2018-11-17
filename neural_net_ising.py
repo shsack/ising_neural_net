@@ -2,12 +2,11 @@ import tensorflow as tf
 import pickle
 import random
 import numpy as np
-#import pylab
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from scipy.optimize import curve_fit
 # Initialize seed for randomized training
-random.seed(30)
+random.seed(42)
 
 # Function to load training and test data
 def load(filename):
@@ -30,9 +29,9 @@ display_step = 40
 # Network Parameters
 n_hidden_1 = 100 # 1st layer number of features
 n_input = 16 * 16 # 2D Ising lattice
-n_classes = 2 # high and low phase
+n_classes = 2 # high and low temperature phase
 
- # tf Graph input
+# tf Graph input
 x = tf.placeholder("float", [None, n_input])
 y = tf.placeholder("float", [None, n_classes])
 
@@ -96,8 +95,8 @@ output = tf.nn.softmax(multilayer_sigmoid(tf.cast(test_x, tf.float32), weights, 
 
 # Sigmoid function to fit output of NN
 def sigmoid(x, x0, k, a, c):
-    y = a / (1 + np.exp(-k * (x - x0))) + c
-    return y
+    return a / (1 + np.exp(-k * (x - x0))) + c
+
 
 # Fit high and low output
 popt0, pcov0 = curve_fit(sigmoid, test_T, abs(output[:, 0].eval()))
