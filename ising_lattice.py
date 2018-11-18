@@ -42,7 +42,7 @@ spins, labels = np.zeros((0, N * N)), np.zeros((0, 2))
 high, low = np.array([1, 0]), np.array([0, 1])
 
 # Loop over the temperatures
-for temp in T:
+for index, temp in enumerate(T):
     tmp = []
     lattice = random_state(N)
 
@@ -64,7 +64,7 @@ for temp in T:
         labels = np.vstack((labels, high))
 
     magnetization.append(np.mean(tmp) / (N * N))
-    #print('{} out of {} temperature steps'.format(index, len(T)))
+    print('{} out of {} temperature steps'.format(index, len(T)))
 
 # Save data
 save(0.5 * (spins + 1), 'train_spins'), save(labels, 'train_labels'), save(T, 'temperature')
