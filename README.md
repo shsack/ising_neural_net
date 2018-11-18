@@ -19,7 +19,7 @@ python3 ising_lattice.py
 This will generate the data and store it with an additional binary label that classifies the data into high and low temperature phases.
 Additionally, a plot will be generated that shows the magnetization as a function of temperature, this allows to visualize the phase transition.
 
-[magnetization_MC.pdf](https://github.com/shsack/IsingNeuralNet/files/2593017/magnetization_MC.pdf)
+![magnetization_mc](https://user-images.githubusercontent.com/45107198/48675840-76f4ad80-eb5e-11e8-9520-19a3a14e4294.png)
 
 ### Training and testing the Neural Network
 
