@@ -2,10 +2,9 @@ import tensorflow as tf
 import pickle
 import random
 import numpy as np
-#import pylab
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from scipy.optimize import curve_fit
+# from scipy.optimize import curve_fit
 # Initialize seed for randomized training
 random.seed(30)
 
