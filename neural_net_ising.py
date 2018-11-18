@@ -2,7 +2,6 @@ import tensorflow as tf
 import pickle
 import random
 import numpy as np
-#import pylab
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from scipy.optimize import curve_fit
@@ -29,10 +28,10 @@ display_step = 40
 
 # Network Parameters
 n_hidden_1 = 100 # 1st layer number of features
-n_input = 16 * 16 # 2D Ising lattice
-n_classes = 2 # high and low phase
+n_input = 16 * 16 # input data
+n_classes = 2 # output neurons
 
- # tf Graph input
+# tf Graph input
 x = tf.placeholder("float", [None, n_input])
 y = tf.placeholder("float", [None, n_classes])
 
@@ -112,7 +111,7 @@ plt.plot(test_T, abs(output[:, 1]).eval(), 'v', color="red")
 plt.plot(x, y0, color='green')
 plt.plot(x, y1, color='red')
 plt.ylim(-0.05, 1.05)
-plt.xlabel("Temperature (T)", fontsize=20)
+plt.xlabel("Temperature", fontsize=20)
 plt.ylabel("Output ", fontsize=20)
 plt.grid()
-plt.show()
+plt.savefig('magnetization_NN.pdf')
