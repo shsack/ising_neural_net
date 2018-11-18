@@ -19,6 +19,8 @@ python3 ising_lattice.py
 This will generate the data and store it with an additional binary label that classifies the data into high and low temperature phases.
 Additionally, a plot will be generated that shows the magnetization as a function of temperature, this allows to visualize the phase transition.
 
+![magnetization_mc](https://user-images.githubusercontent.com/45107198/48675840-76f4ad80-eb5e-11e8-9520-19a3a14e4294.png)
+
 ### Training and testing the Neural Network
 
 To train and test the neural network you need to run
@@ -29,6 +31,11 @@ python3 neural_net_ising.py
  
 This will first train the neural network on the spin configurations and secondly test the network on a different set of data.
 The output of the network is plotted as a function of temperature.
+
+![magnetization_nn](https://user-images.githubusercontent.com/45107198/48675901-8de7cf80-eb5f-11e8-8d27-14c3eb1f48ba.png)
+
+This shows that the neural network is able to learn the order parameter of the phase transition with very high accuracy.
+Comparing the magnetization curve of the Monte Carlo simulation shows that the neural network was able to identify the magnetization as the relevant order paramter.
 
 ## Authors
 
