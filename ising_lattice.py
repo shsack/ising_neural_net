@@ -73,6 +73,6 @@ plt.plot(T, abs(np.array(magnetization)), 'o', color="green")
 plt.xlabel("Temperature", fontsize=15)
 plt.ylabel("Magnetization ", fontsize=15)
 plt.grid()
-plt.savefig('magnetization_MC.pdf')
+plt.savefig('magnetization_MC.png')
 
 
