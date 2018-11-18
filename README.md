@@ -32,6 +32,8 @@ python3 neural_net_ising.py
 This will first train the neural network on the spin configurations and secondly test the network on a different set of data.
 The output of the network is plotted as a function of temperature.
 
+![magnetization_nn](https://user-images.githubusercontent.com/45107198/48675901-8de7cf80-eb5f-11e8-8d27-14c3eb1f48ba.png)
+
 ## Authors
 
 * **Stefan H Sack** 
