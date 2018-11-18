@@ -10,14 +10,13 @@ def load(filename):
 data, labels = load('train_spins'), load('train_labels')
 x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, random_state=42)
 
-print(labels)
 
-num_inputs = 256
-num_classes = 1
+num_inputs = 16 * 16
+num_classes = 2
 
-regularization = 0.001
+regularization = 2 * 1e-5
 
-print_every = 10
+print_every = 400
 
 with tf.name_scope("inputs"):
     x = tf.placeholder(tf.float32, [None, num_inputs], name="x-input")
@@ -49,14 +48,14 @@ with tf.name_scope("score"):
 with tf.Session() as sess:
 
     tf.global_variables_initializer().run()
-    for epoch in range(100):
+    for epoch in range(50000):
 
         perm = np.arange(len(x_train))
         np.random.shuffle(perm)
         x_train = x_train[perm]
         y_train = y_train[perm]
 
-        feed = {x: x_train, y: y_train, learning_rate: 1e-2, regularization: 1e-5}
+        feed = {x: x_train, y: y_train, learning_rate: 1e-2, regularization: 2 * 1e-5}
         sess.run(train_op, feed_dict=feed)
 
         if epoch % print_every == 0:

@@ -23,7 +23,7 @@ train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, dat
 # Parameters
 learning_rate = 1e-2
 l2 = 2 * 1e-5
-training_epochs = 12000
+training_epochs = 2000
 display_step = 40
 
 # Network Parameters
@@ -56,10 +56,11 @@ def multilayer_sigmoid(x, weights, biases):
 pred = multilayer_sigmoid(x, weights, biases)
 
 # Define cost and optimizer
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred, labels=y))
 regularizer = tf.nn.l2_loss(weights['h1']) + tf.nn.l2_loss(weights['out'])
 cost = tf.reduce_mean(cost + l2 * regularizer)
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate).minimize(cost)
+optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+
 
 # Initializing the variables
 sess = tf.InteractiveSession()
@@ -111,7 +112,7 @@ plt.plot(test_T, abs(output[:, 1]).eval(), 'v', color="red")
 plt.plot(x, y0, color='green')
 plt.plot(x, y1, color='red')
 plt.ylim(-0.05, 1.05)
-plt.xlabel("Temperature (T)", fontsize=20)
-plt.ylabel("Output ", fontsize=20)
+plt.xlabel("Temperature", fontsize=15)
+plt.ylabel("Output ", fontsize=15)
 plt.grid()
-plt.show()
+plt.savefig('magnetization_NN.pdf')
