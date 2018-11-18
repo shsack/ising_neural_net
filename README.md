@@ -34,6 +34,9 @@ The output of the network is plotted as a function of temperature.
 
 ![magnetization_nn](https://user-images.githubusercontent.com/45107198/48675901-8de7cf80-eb5f-11e8-8d27-14c3eb1f48ba.png)
 
+This shows that the neural network is able to learn the order parameter of the phase transition with very high accuracy.
+Comparing the magnetization curve of the Monte Carlo simulation shows that the neural network was able to identify the magnetization as the relevant order paramter.
+
 ## Authors
 
 * **Stefan H Sack** 
