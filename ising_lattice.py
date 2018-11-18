@@ -8,7 +8,7 @@ def randomstate(N):
     return 2 * np.random.randint(2, size=(N, N)) - 1
 
 # Performs one Metropolis step
-@njit(parallel=True)
+@njit(parallel=True) # simple parallel for loop
 def metropolis_step(lattice, T):
     for _ in prange(N * N):
         x, y = np.random.randint(0, N), np.random.randint(0, N)
