@@ -18,7 +18,7 @@ data_x, data_y = load('train_spins'), load('train_labels')
 T = load('temperature')
 
 # Split data into training and test set
-train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, data_y, T, test_size=0.3)
+train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, data_y, T, test_size=0.1)
 
 # Parameters
 learning_rate = 1e-2
@@ -76,17 +76,17 @@ for epoch in range(training_epochs):
     # Training step
     _, c = sess.run([optimizer, cost], feed_dict={x: train_x, y: train_y})
 
-    # Test model
-    correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
-
-    # Calculate accuracy
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-
     # Display logs per epoch step
     if epoch % display_step == 0:
-        print("Epoch:", '%04d' % (epoch+1), "Cost =", "{:.3f}".format(c),
-              "Train Accuracy:", "{:.3f}".format(accuracy.eval(feed_dict={x: train_x, y: train_y})),
-              "Test Accuracy:", "{:.3f}".format(accuracy.eval(feed_dict={x: test_x, y: test_y})))
+        print("Epoch:", '%04d' % (epoch + 1), "Cost =", "{:.3f}".format(c))
+
+# Test model
+correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
+
+# Calculate and print accuracy
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+print('Network trained!')
+print('Accuracy: {:.3f}'.format(accuracy.eval({x: test_x, y: test_y})))
 
 # Define NN output
 output = tf.nn.softmax(multilayer_sigmoid(tf.cast(test_x, tf.float32), weights, biases))
