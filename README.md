@@ -13,7 +13,7 @@ is trained to classify the two phases of the model. The spin configurations are 
 ### Generate training data
 
 To run the program you first need to generate spin configurations of the 2D Ising model over a range of temperatures by 
-running 
+running: 
 
 ```
 python3 ising_lattice.py
@@ -26,7 +26,7 @@ Additionally, a plot will be generated that shows the magnetization as a functio
 
 ### Training and testing the Neural Network
 
-To train and test the neural network you need to run
+To train and test the neural network you need to run:
 
 ```
 python3 neural_net_ising.py
