@@ -3,6 +3,10 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+# Seed random number generator
+random_state = 42
+np.random.seed(random_state)
+tf.set_random_seed(random_state)
 
 # Function to load training and test data
 def load(filename):
@@ -14,7 +18,7 @@ data_x, data_y = load('train_spins'), load('train_labels')
 T = load('temperature')
 
 # Split data into training and test set
-train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, data_y, T, test_size=0.3, random_state=42)
+train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, data_y, T, test_size=0.3)
 
 # Parameters
 learning_rate = 1e-2
