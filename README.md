@@ -50,7 +50,7 @@ python3 confusion_NN.py
 
 The scheme allows to identify the the critical temperature by confusing the neural network with wrong lablels. The network will be the least confused for the correct label. 
 
-![confusion_nn](https://user-images.githubusercontent.com/45107198/48733990-661e6780-ec44-11e8-92f2-2923bba48401.png)
+![confusion_nn](https://user-images.githubusercontent.com/45107198/48735552-07a7b800-ec49-11e8-9903-1ce994340c8e.png)
 
 This replicates the critical temperature obtained by the Monte Carlo simulation.
 
