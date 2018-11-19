@@ -30,7 +30,7 @@ N = 16
 Tc = 2.269
 MCsteps = 5000
 EQsteps = 2000
-ntemp = 100
+ntemp = 1000
 
 T = np.linspace(1., 3.5, ntemp)
 magnetization = []

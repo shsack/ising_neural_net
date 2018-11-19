@@ -1,6 +1,5 @@
 import tensorflow as tf
 import pickle
-import random
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -44,8 +43,7 @@ biases = {
 
 # Create model
 def multilayer_sigmoid(x, weights, biases):
-    layer_1 = tf.add(tf.matmul(x, weights['h1']), biases['b1'])
-    layer_1 = tf.sigmoid(layer_1)
+    layer_1 = tf.sigmoid(tf.matmul(x, weights['h1']) + biases['b1'])
     out_layer = tf.matmul(layer_1, weights['out']) + biases['out']
     return out_layer
 
