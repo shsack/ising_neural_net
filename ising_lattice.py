@@ -12,7 +12,7 @@ def randomstate(N):
 def metropolis_step(lattice, T):
     for _ in prange(N * N):
         x, y = np.random.randint(0, N), np.random.randint(0, N)
-        deltaE = 2 * lattice[x, y] * (lattice[(x + 1) % N, y] + lattice[x, (y + 1) % N] +
+        deltaE = 2 * lattice[x, y] * (lattice[(x + 1) % N, y] + lattice[x, (y + 1) % N] + # Periodic boundary conditions
                        lattice[(x - 1) % N, y] + lattice[x, (y - 1) % N])
         if deltaE < 0:
             lattice[x, y] *= -1
