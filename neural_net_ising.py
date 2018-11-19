@@ -18,12 +18,12 @@ data_x, data_y = load('train_spins'), load('train_labels')
 T = load('temperature')
 
 # Split data into training and test set
-train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, data_y, T, test_size=0.1)
+train_x, test_x, train_y, test_y, train_T, test_T = train_test_split(data_x, data_y, T, test_size=0.1, random_state=random_state)
 
 # Parameters
 learning_rate = 1e-2
 l2 = 2 * 1e-5
-training_epochs = 1000
+training_epochs = 5000
 display_step = 100
 
 # Network Parameters
