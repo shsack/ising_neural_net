@@ -35,7 +35,7 @@ python3 neural_net_ising.py
 This will first train the neural network on the spin configurations and secondly test the network on a different set of data.
 The output of the network is plotted as a function of temperature. The output of the network is given by two neurons, one for classifying the high and one for the low temperature phase. The cross over of the two outputs indicates the critical temperature, that was learned form the training data.
 
-![magnetization_nn](https://user-images.githubusercontent.com/45107198/48675901-8de7cf80-eb5f-11e8-8d27-14c3eb1f48ba.png)
+![magnetization_nn](https://user-images.githubusercontent.com/45107198/48707308-53ce0a80-ebff-11e8-8d81-445d4fb791b7.png)
 
 This shows that the neural network is able to learn the order parameter of the phase transition with very high accuracy.
 Comparing the magnetization curve of the Monte Carlo simulation shows that the neural network was able to identify the magnetization as the relevant order paramter.
