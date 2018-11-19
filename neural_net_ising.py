@@ -4,8 +4,6 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-# Initialize seed for randomized training
-random.seed(30)
 
 # Function to load training and test data
 def load(filename):
@@ -55,7 +53,7 @@ def multilayer_sigmoid(x, weights, biases):
 pred = multilayer_sigmoid(x, weights, biases)
 
 # Define cost and optimizer
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred, labels=y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=y))
 regularizer = tf.nn.l2_loss(weights['h1']) + tf.nn.l2_loss(weights['out'])
 cost = tf.reduce_mean(cost + l2 * regularizer)
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
@@ -70,8 +68,7 @@ for epoch in range(training_epochs):
     # Randomly shuffle training data
     perm = np.arange(len(train_x))
     np.random.shuffle(perm)
-    train_x = train_x[perm]
-    train_y = train_y[perm]
+    train_x, train_y = train_x[perm], train_y[perm]
     train_T = train_T[perm]
 
     # Training step
@@ -85,7 +82,7 @@ for epoch in range(training_epochs):
 
     # Display logs per epoch step
     if epoch % display_step == 0:
-        print("Epoch:", '%04d' % (epoch+1), "Cost=", "{:.3f}".format(c),
+        print("Epoch:", '%04d' % (epoch+1), "Cost =", "{:.3f}".format(c),
               "Train Accuracy:", "{:.3f}".format(accuracy.eval(feed_dict={x: train_x, y: train_y})),
               "Test Accuracy:", "{:.3f}".format(accuracy.eval(feed_dict={x: test_x, y: test_y})))
 
