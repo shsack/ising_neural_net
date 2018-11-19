@@ -46,13 +46,13 @@ biases = {
 }
 
 # Create model
-def multilayer_sigmoid(x, weights, biases):
+def singlelayer_sigmoid(x, weights, biases):
     layer_1 = tf.sigmoid(tf.matmul(x, weights['h1']) + biases['b1'])
     out_layer = tf.matmul(layer_1, weights['out']) + biases['out']
     return out_layer
 
 # Construct model
-pred = multilayer_sigmoid(x, weights, biases)
+pred = singlelayer_sigmoid(x, weights, biases)
 
 # Define cost and optimizer
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=y))
@@ -71,7 +71,6 @@ for epoch in range(training_epochs):
     perm = np.arange(len(train_x))
     np.random.shuffle(perm)
     train_x, train_y = train_x[perm], train_y[perm]
-    train_T = train_T[perm]
 
     # Training step
     _, c = sess.run([optimizer, cost], feed_dict={x: train_x, y: train_y})
@@ -89,7 +88,7 @@ print('Network trained!')
 print('Accuracy: {:.3f}'.format(accuracy.eval({x: test_x, y: test_y})))
 
 # Define NN output
-output = tf.nn.softmax(multilayer_sigmoid(tf.cast(test_x, tf.float32), weights, biases))
+output = tf.nn.softmax(singlelayer_sigmoid(tf.cast(test_x, tf.float32), weights, biases))
 
 # Plotting output of NN
 plt.plot(test_T, abs(output[:, 0].eval()), '+', color="green", label='high T')
