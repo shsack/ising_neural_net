@@ -99,8 +99,8 @@ for pos in range(dim, step):
     accuracy.append(accuracy_tmp.eval({x: data_x, y: data_y}))
     sess.close()
 
-plt.plot(np.linspace(1., 3.5, len(accuracy)), accuracy, '-o', color="orange",)
-plt.xlabel('Temperature')
-plt.ylabel('Accuracy')
+plt.plot(np.linspace(1., 3.5, len(accuracy)), accuracy, '-o', color="orange")
+plt.xlabel('Temperature', fontsize=15)
+plt.ylabel('Accuracy', fontsize=15)
 plt.grid()
 plt.savefig('confusion_NN.png')
