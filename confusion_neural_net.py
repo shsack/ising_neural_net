@@ -60,12 +60,13 @@ def initialize_model(x, weights, biases):
 
     return pred, cost, optimizer
 
-
 step = 25 # Step in confusion scheme
 accuracy = []
 
 # Loop over proposed critical temperatures
-for pos in range(dim, step):
+for pos in range(0, dim, step):
+
+    print('step {}'.format(pos))
 
     # Initializing the variables
     pred, cost, optimizer = initialize_model(x, weights, biases)
