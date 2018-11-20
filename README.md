@@ -48,11 +48,11 @@ To run the confusion scheme you need to run:
 python3 confusion_NN.py
 ```
 
-The scheme allows to identify the the critical temperature by confusing the neural network with wrong lablels. The network will be the least confused for the correct label. 
+The scheme allows to identify the the critical temperature by confusing the neural network with wrong lablels. Once the network is trained with the wrong labels, its accuracy is evaluated on the entire data set. The accuracy as a function of the label shows three peaks, two corresponding to labeling the entire set as one phase and one corresponding to the right label.
 
 ![confusion_nn](https://user-images.githubusercontent.com/45107198/48735552-07a7b800-ec49-11e8-9903-1ce994340c8e.png)
 
-This replicates the critical temperature obtained by the Monte Carlo simulation.
+The middle peak thus replicates the critical temperature obtained by the Monte Carlo simulation.
 
 ## Authors
 
