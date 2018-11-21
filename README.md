@@ -45,7 +45,7 @@ Comparing the magnetization curve of the Monte Carlo simulation shows that the n
 To run the confusion scheme you need to run:
 
 ```
-python3 confusion_NN.py
+python3 confusion_neural_net.py
 ```
 
 The scheme allows to identify the the critical temperature by confusing the neural network with wrong lablels. Once the network is trained with the wrong labels, its accuracy is evaluated on the entire data set. The accuracy as a function of the label shows three peaks, two corresponding to labeling the entire set as one phase and one corresponding to the right label.
