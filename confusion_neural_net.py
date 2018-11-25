@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from numba import prange
 # Seed random number generator
 random_state = 42
 np.random.seed(random_state)
@@ -64,7 +65,7 @@ step = 25 # Step in confusion scheme
 accuracy = []
 
 # Loop over proposed critical temperatures
-for pos in range(0, dim, step):
+for pos in prange(0, dim, step):
 
     print('step {}'.format(pos))
 
